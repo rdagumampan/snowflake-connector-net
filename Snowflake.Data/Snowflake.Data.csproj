@@ -2,12 +2,19 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net46</TargetFrameworks>
     <Title>Snowflake.Data</Title>
-    <PackageId>Snowflake.Data</PackageId>
+    <PackageId>Snowflake.Data.Unofficial</PackageId>
     <PackageLicenseUrl>https://github.com/snowflakedb/snowflake-connector-net/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/snowflakedb/snowflake-connector-net</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIconUrl>https://raw.githubusercontent.com/snowflakedb/snowflake-connector-net/master/Snowflake.Data/snowflake.ico</PackageIconUrl>
-    <Description>Snowflake Connector for .NET</Description>
+    <Description>Snowflake Connector for .NET
+
+Modifications in this unofficial build (by rdagumampan):
+- Removed dependency to Log4net
+- Removed dependency to Common.Logging
+- Removed dependency to System.Configuration.ConfigurationManager
+- Removed SFConfigurationSectionHandler
+- Fixed several errors when used in .NET Core 3.+ self-contained app due to log4net carrying old dependencies causing downgrade detection of other dependencies</Description>
     <Company>Snowflake Computing, Inc</Company>
     <Product>Snowflake Connector for .NET</Product>
     <Authors>howryu, tchen</Authors>
@@ -19,7 +26,6 @@
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="0.12.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="log4net" Version="2.0.8" />
   </ItemGroup>
   
   <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
@@ -29,9 +35,8 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
   </ItemGroup>
-  
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>full</DebugType>
     <DebugSymbols>True</DebugSymbols>

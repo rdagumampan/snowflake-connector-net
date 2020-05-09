@@ -2,7 +2,7 @@
  * Copyright (c) 2012-2019 Snowflake Computing Inc. All rights reserved.
  */
 
-using log4net;
+//using log4net;
 
 namespace Snowflake.Data.Log
 {
@@ -10,8 +10,15 @@ namespace Snowflake.Data.Log
     {
         public static SFLogger GetLogger<T>()
         {
-            ILog logger = LogManager.GetLogger(typeof(T));
-            return new Log4netImpl(logger);
+            return new DefaultSFLogger(typeof(T));
         }
+    }
+
+    public static class GlobalConfiguration {
+
+        //public void Configure() { 
+        
+        //}
+
     }
 }
