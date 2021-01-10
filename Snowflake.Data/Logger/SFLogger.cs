@@ -1,5 +1,7 @@
 ﻿/*
  * Copyright (c) 2012-2019 Snowflake Computing Inc. All rights reserved.
+ * Notice of modifications:
+ *  @rdagumampan : Made the class public
  */
 
 using System;
@@ -8,8 +10,10 @@ using System.Text;
 
 namespace Snowflake.Data.Log
 {
-    interface SFLogger
+    public interface SFLogger
     {
+        void SetDebugMode(bool enabled = false);
+
         bool IsDebugEnabled();
 
         bool IsInfoEnabled();

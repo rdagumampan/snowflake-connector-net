@@ -7,44 +7,67 @@ using System.IO;
 
 namespace Snowflake.Data.Log
 {
-    public class ConsoleFileSFLogger : SFLogger
+    public sealed class ConsoleFileSFLogger : SFLogger
     {
-        private Type _context;
+        private static readonly string _traceSessionId = DateTime.Now.ToString("MMddyyyy-HHmmss");
+        private static readonly ConsoleFileSFLogger _instance = new ConsoleFileSFLogger();
 
-        private string _traceSessionId;
+        ///<inheritdoc/>
+        static ConsoleFileSFLogger() {
+        }
 
-        public ConsoleFileSFLogger(Type context)
+        ///<inheritdoc/>
+        private ConsoleFileSFLogger() { }
+
+        /// <summary>
+        /// Returns global singleton instance of session configuration
+        /// </summary>
+        public static ConsoleFileSFLogger Instance
         {
-            this._context = context;
+            get
+            {
+                return _instance;
+            }
+        }
+
+        private bool _debuEnabled = false;
+        public void SetDebugMode(bool enabled = false)
+        {
+            _debuEnabled = enabled;
         }
 
         public void Debug(string msg, Exception ex = null)
         {
-            var traceFile = GetTraceSessionFilePath();
-            var traceMessage = $"DBG   {DateTime.UtcNow.ToString("u")}   {msg}. {ex?.ToString()}{Environment.NewLine}";
+            if (IsDebugEnabled()) {
+                var traceFile = GetTraceSessionFilePath();
+                var traceMessage = $"DBG   {DateTime.UtcNow.ToString("u")}   Snowflake   {msg}. {ex?.ToString()}{Environment.NewLine}";
 
-            File.AppendAllText(traceFile, traceMessage);
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.Write(traceMessage);
-            Console.ResetColor();
+                File.AppendAllText(traceFile, traceMessage);
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.Write(traceMessage);
+                Console.ResetColor();
+            }
         }
 
         public void DebugFmt(string fmt, params object[] args)
         {
-            var traceFile = GetTraceSessionFilePath();
-            var baseMessage = string.Format(fmt, args);
-            var traceMessage = $"DBG   {DateTime.UtcNow.ToString("u")}   {baseMessage}{Environment.NewLine}";
+            if (IsDebugEnabled())
+            {
+                var traceFile = GetTraceSessionFilePath();
+                var baseMessage = string.Format(fmt, args);
+                var traceMessage = $"DBG   {DateTime.UtcNow.ToString("u")}   Snowflake   {baseMessage}{Environment.NewLine}";
 
-            File.AppendAllText(traceFile, traceMessage);
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.Write(traceMessage);
-            Console.ResetColor();
+                File.AppendAllText(traceFile, traceMessage);
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.Write(traceMessage);
+                Console.ResetColor();
+            }
         }
 
         public void Info(string msg, Exception ex = null)
         {
             var traceFile = GetTraceSessionFilePath();
-            var traceMessage = $"INF   {DateTime.UtcNow.ToString("u")}   {msg}. {ex?.ToString()}{Environment.NewLine}";
+            var traceMessage = $"INF   {DateTime.UtcNow.ToString("u")}   Snowflake   {msg}. {ex?.ToString()}{Environment.NewLine}";
 
             File.AppendAllText(traceFile, traceMessage);
             Console.Write(traceMessage);
@@ -54,7 +77,7 @@ namespace Snowflake.Data.Log
         {
             var traceFile = GetTraceSessionFilePath();
             var baseMessage = string.Format(fmt, args);
-            var traceMessage = $"INF   {DateTime.UtcNow.ToString("u")}   {baseMessage}{Environment.NewLine}";
+            var traceMessage = $"INF   {DateTime.UtcNow.ToString("u")}   Snowflake   {baseMessage}{Environment.NewLine}";
 
             File.AppendAllText(traceFile, traceMessage);
             Console.Write(traceMessage);
@@ -63,7 +86,7 @@ namespace Snowflake.Data.Log
         public void Warn(string msg, Exception ex = null)
         {
             var traceFile = GetTraceSessionFilePath();
-            var traceMessage = $"WRN   {DateTime.UtcNow.ToString("u")}   {msg}. {ex?.ToString()}{Environment.NewLine}";
+            var traceMessage = $"WRN   {DateTime.UtcNow.ToString("u")}   Snowflake   {msg}. {ex?.ToString()}{Environment.NewLine}";
 
             File.AppendAllText(traceFile, traceMessage);
             Console.Write(traceMessage);
@@ -73,7 +96,7 @@ namespace Snowflake.Data.Log
         {
             var traceFile = GetTraceSessionFilePath();
             var baseMessage = string.Format(fmt, args);
-            var traceMessage = $"INF   {DateTime.UtcNow.ToString("u")}   {baseMessage}{Environment.NewLine}";
+            var traceMessage = $"INF   {DateTime.UtcNow.ToString("u")}   Snowflake   {baseMessage}{Environment.NewLine}";
 
             File.AppendAllText(traceFile, traceMessage);
             Console.Write(traceMessage);
@@ -82,7 +105,7 @@ namespace Snowflake.Data.Log
         public void Error(string msg, Exception ex = null)
         {
             var traceFile = GetTraceSessionFilePath();
-            var traceMessage = $"ERR   {DateTime.UtcNow.ToString("u")}   {msg}{Environment.NewLine}";
+            var traceMessage = $"ERR   {DateTime.UtcNow.ToString("u")}   Snowflake   {msg}{Environment.NewLine}";
 
             File.AppendAllText(traceFile, traceMessage);
             Console.ForegroundColor = ConsoleColor.Red;
@@ -94,7 +117,7 @@ namespace Snowflake.Data.Log
         {
             var traceFile = GetTraceSessionFilePath();
             var baseMessage = string.Format(fmt, args);
-            var traceMessage = $"ERR   {DateTime.UtcNow.ToString("u")}   {baseMessage}{Environment.NewLine}";
+            var traceMessage = $"ERR   {DateTime.UtcNow.ToString("u")}   Snowflake   {baseMessage}{Environment.NewLine}";
 
             File.AppendAllText(traceFile, traceMessage);
             Console.ForegroundColor = ConsoleColor.Red;
@@ -105,7 +128,7 @@ namespace Snowflake.Data.Log
         public void Fatal(string msg, Exception ex = null)
         {
             var traceFile = GetTraceSessionFilePath();
-            var traceMessage = $"FAT   {DateTime.UtcNow.ToString("u")}   {msg}{Environment.NewLine}";
+            var traceMessage = $"FAT   {DateTime.UtcNow.ToString("u")}   Snowflake   {msg}{Environment.NewLine}";
 
             File.AppendAllText(traceFile, traceMessage);
             Console.ForegroundColor = ConsoleColor.Red;
@@ -117,7 +140,7 @@ namespace Snowflake.Data.Log
         {
             var traceFile = GetTraceSessionFilePath();
             var baseMessage = string.Format(fmt, args);
-            var traceMessage = $"FAT   {DateTime.UtcNow.ToString("u")}   {baseMessage}{Environment.NewLine}";
+            var traceMessage = $"FAT   {DateTime.UtcNow.ToString("u")}   Snowflake   {baseMessage}{Environment.NewLine}";
 
             File.AppendAllText(traceFile, traceMessage);
             Console.ForegroundColor = ConsoleColor.Red;
@@ -125,7 +148,7 @@ namespace Snowflake.Data.Log
             Console.ResetColor();
         }
 
-        public bool IsDebugEnabled() => true;
+        public bool IsDebugEnabled() => _debuEnabled;
 
         public bool IsErrorEnabled() => true;
 
@@ -139,6 +162,5 @@ namespace Snowflake.Data.Log
         {
             return Path.Combine(Environment.CurrentDirectory, $"snowflake-log-{_traceSessionId}.txt");
         }
-
     }
 }
