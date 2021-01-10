@@ -10,11 +10,13 @@
     <Description>Snowflake Connector for .NET
 
 Modifications in this unofficial build (by rdagumampan):
+- Forked from offical repo v1.1.2
 - Removed dependency to Log4net
 - Removed dependency to Common.Logging
 - Removed dependency to System.Configuration.ConfigurationManager
 - Removed SFConfigurationSectionHandler
-- Fixed several errors when used in .NET Core 3.+ self-contained app due to log4net carrying old dependencies causing downgrade detection of other dependencies</Description>
+- Fixed several errors when used in .NET Core 3.+ self-contained app due to log4net carrying old dependencies causing downgrade detection of other dependencies
+  </Description>
     <Company>Snowflake Computing, Inc</Company>
     <Product>Snowflake Connector for .NET</Product>
     <Authors>howryu, tchen</Authors>

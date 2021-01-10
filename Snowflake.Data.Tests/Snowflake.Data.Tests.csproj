@@ -15,11 +15,11 @@
     <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
     <ProjectReference Include="..\Snowflake.Data\Snowflake.Data.csproj" />
   </ItemGroup>
-  <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
-    <Copy SourceFiles="parameters.json" DestinationFolder="$(OutDir)" />
+  <!--<Target Name="CopyCustomContent" AfterTargets="AfterBuild">-->
+    <!--<Copy SourceFiles="parameters.json" DestinationFolder="$(OutDir)" />
 	<Copy SourceFiles="parameters_gcp.json" DestinationFolder="$(OutDir)" />
     <Copy SourceFiles="App.config" DestinationFolder="$(OutDir)" />
-  </Target>
+  </Target>-->
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>

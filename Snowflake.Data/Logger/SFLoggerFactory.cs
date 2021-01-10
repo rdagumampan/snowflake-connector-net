@@ -10,7 +10,7 @@ namespace Snowflake.Data.Log
     {
         public static SFLogger GetLogger<T>()
         {
-            return new DefaultSFLogger(typeof(T));
+            return new ConsoleFileSFLogger(typeof(T));
         }
     }
 
