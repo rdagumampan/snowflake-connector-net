@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2012-2019 Snowflake Computing Inc. All rights reserved.
+ * Copyright (c) @rdagumampan / Replace default logger until the master repo removed dependency to log4net
  */
 
 using System;

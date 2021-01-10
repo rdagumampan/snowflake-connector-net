@@ -1,93 +1,96 @@
 ﻿/*
  * Copyright (c) 2012-2019 Snowflake Computing Inc. All rights reserved.
+ * Notice of modifications:
+ *  @rdagumampan : Commented and removed dependency to log4net as default logger
  */
 
-using System;
+//using log4net;
+//using System;
 
-namespace Snowflake.Data.Log
-{
-    public class DefaultSFLogger : SFLogger
-    {
-        private Type _context;
+//namespace Snowflake.Data.Log
+//{
+//    class Log4netImpl : SFLogger
+//    {
+//        private readonly ILog logger;
 
-        public DefaultSFLogger(Type context)
-        {
-            this._context = context;
-        }
+//        public Log4netImpl(ILog logger)
+//        {
+//            this.logger = logger;
+//        }
 
-        public void Debug(string msg, Exception ex = null)
-        {
-            //throw new NotImplementedException();
-        }
+//        public bool IsDebugEnabled()
+//        {
+//            return logger.IsDebugEnabled;
+//        }
 
-        public void DebugFmt(string fmt, params object[] args)
-        {
-            //throw new NotImplementedException();
-        }
+//        public bool IsInfoEnabled()
+//        {
+//            return logger.IsInfoEnabled;
+//        }
 
-        public void Error(string msg, Exception ex = null)
-        {
-            //throw new NotImplementedException();
-        }
+//        public bool IsWarnEnabled()
+//        {
+//            return logger.IsWarnEnabled;
+//        }
 
-        public void ErrorFmt(string fmt, params object[] args)
-        {
-            //throw new NotImplementedException();
-        }
+//        public bool IsErrorEnabled()
+//        {
+//            return logger.IsErrorEnabled;
+//        }
 
-        public void Fatal(string msg, Exception ex = null)
-        {
-            //throw new NotImplementedException();
-        }
+//        public bool IsFatalEnabled()
+//        {
+//            return logger.IsFatalEnabled;
+//        }
 
-        public void FatalFmt(string fmt, params object[] args)
-        {
-            //throw new NotImplementedException();
-        }
+//        public void Debug(string msg, Exception ex = null)
+//        {
+//            logger.Debug(msg, ex);
+//        }
 
-        public void Info(string msg, Exception ex = null)
-        {
-            //throw new NotImplementedException();
-        }
+//        public void DebugFmt(string fmt, params object[] args)
+//        {
+//            logger.DebugFormat(fmt, args);
+//        }
 
-        public void InfoFmt(string fmt, params object[] args)
-        {
-            //throw new NotImplementedException();
-        }
+//        public void Info(string msg, Exception ex = null)
+//        {
+//            logger.Info(msg, ex);
+//        }
 
-        public bool IsDebugEnabled()
-        {
-            throw new NotImplementedException();
-        }
+//        public void InfoFmt(string fmt, params object[] args)
+//        {
+//            logger.InfoFormat(fmt, args);
+//        }
 
-        public bool IsErrorEnabled()
-        {
-            throw new NotImplementedException();
-        }
+//        public void Warn(string msg, Exception ex = null)
+//        {
+//            logger.Warn(msg, ex);
+//        }
 
-        public bool IsFatalEnabled()
-        {
-            throw new NotImplementedException();
-        }
+//        public void WarnFmt(string fmt, params object[] args)
+//        {
+//            logger.WarnFormat(fmt, args);
+//        }
 
-        public bool IsInfoEnabled()
-        {
-            throw new NotImplementedException();
-        }
+//        public void Error(string msg, Exception ex = null)
+//        {
+//            logger.Error(msg, ex);
+//        }
 
-        public bool IsWarnEnabled()
-        {
-            throw new NotImplementedException();
-        }
+//        public void ErrorFmt(string fmt, params object[] args)
+//        {
+//            logger.InfoFormat(fmt, args);
+//        }
 
-        public void Warn(string msg, Exception ex = null)
-        {
-            //throw new NotImplementedException();
-        }
+//        public void Fatal(string msg, Exception ex = null)
+//        {
+//            logger.Fatal(msg, ex);
+//        }
 
-        public void WarnFmt(string fmt, params object[] args)
-        {
-            //throw new NotImplementedException();
-        }
-    }
-}
+//        public void FatalFmt(string fmt, params object[] args)
+//        {
+//            logger.InfoFormat(fmt, args);
+//        }
+//    }
+//}

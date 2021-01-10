@@ -1,4 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿ <!--
+ * Notice of modifications:
+ *  @rdagumampan : Commented and removed dependency to log4net as default logger
+ -->
+
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net46</TargetFrameworks>
     <Title>Snowflake.Data</Title>
@@ -10,7 +15,7 @@
     <Description>Snowflake Connector for .NET
 
 Modifications in this unofficial build (by rdagumampan):
-- Forked from offical repo v1.1.2
+- Forked from offical repo v1.1.2 on May 8 2020
 - Removed dependency to Log4net
 - Removed dependency to Common.Logging
 - Removed dependency to System.Configuration.ConfigurationManager
