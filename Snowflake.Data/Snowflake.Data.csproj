@@ -20,13 +20,14 @@ Modifications in this unofficial build (by rdagumampan):
 - Removed dependency to Common.Logging
 - Removed dependency to System.Configuration.ConfigurationManager
 - Removed SFConfigurationSectionHandler
+- Reset package version from 1.1.2 into 0.x.x
 - Fixed several errors when used in .NET Core 3.+ self-contained app due to log4net carrying old dependencies causing downgrade detection of other dependencies
   </Description>
     <Company>Snowflake Computing, Inc</Company>
     <Product>Snowflake Connector for .NET</Product>
-    <Authors>howryu, tchen</Authors>
+    <Authors>howryu, tchen, rdagumampan</Authors>
     <Copyright>Copyright (c) 2012-2019 Snowflake Computing Inc. All rights reserved.</Copyright>
-    <Version>1.1.2</Version>
+    <Version>0.1.0</Version>
     <DebugType>Full</DebugType>
   </PropertyGroup>
 	

@@ -24,7 +24,9 @@ namespace Snowflake.Data.Log
             var traceMessage = $"DBG   {DateTime.UtcNow.ToString("u")}   {msg}. {ex?.ToString()}{Environment.NewLine}";
 
             File.AppendAllText(traceFile, traceMessage);
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write(traceMessage);
+            Console.ResetColor();
         }
 
         public void DebugFmt(string fmt, params object[] args)
@@ -32,6 +34,46 @@ namespace Snowflake.Data.Log
             var traceFile = GetTraceSessionFilePath();
             var baseMessage = string.Format(fmt, args);
             var traceMessage = $"DBG   {DateTime.UtcNow.ToString("u")}   {baseMessage}{Environment.NewLine}";
+
+            File.AppendAllText(traceFile, traceMessage);
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.Write(traceMessage);
+            Console.ResetColor();
+        }
+
+        public void Info(string msg, Exception ex = null)
+        {
+            var traceFile = GetTraceSessionFilePath();
+            var traceMessage = $"INF   {DateTime.UtcNow.ToString("u")}   {msg}. {ex?.ToString()}{Environment.NewLine}";
+
+            File.AppendAllText(traceFile, traceMessage);
+            Console.Write(traceMessage);
+        }
+
+        public void InfoFmt(string fmt, params object[] args)
+        {
+            var traceFile = GetTraceSessionFilePath();
+            var baseMessage = string.Format(fmt, args);
+            var traceMessage = $"INF   {DateTime.UtcNow.ToString("u")}   {baseMessage}{Environment.NewLine}";
+
+            File.AppendAllText(traceFile, traceMessage);
+            Console.Write(traceMessage);
+        }
+
+        public void Warn(string msg, Exception ex = null)
+        {
+            var traceFile = GetTraceSessionFilePath();
+            var traceMessage = $"WRN   {DateTime.UtcNow.ToString("u")}   {msg}. {ex?.ToString()}{Environment.NewLine}";
+
+            File.AppendAllText(traceFile, traceMessage);
+            Console.Write(traceMessage);
+        }
+
+        public void WarnFmt(string fmt, params object[] args)
+        {
+            var traceFile = GetTraceSessionFilePath();
+            var baseMessage = string.Format(fmt, args);
+            var traceMessage = $"INF   {DateTime.UtcNow.ToString("u")}   {baseMessage}{Environment.NewLine}";
 
             File.AppendAllText(traceFile, traceMessage);
             Console.Write(traceMessage);
@@ -83,25 +125,6 @@ namespace Snowflake.Data.Log
             Console.ResetColor();
         }
 
-        public void Info(string msg, Exception ex = null)
-        {
-            var traceFile = GetTraceSessionFilePath();
-            var traceMessage = $"INF   {DateTime.UtcNow.ToString("u")}   {msg}. {ex?.ToString()}{Environment.NewLine}";
-
-            File.AppendAllText(traceFile, traceMessage);
-            Console.Write(traceMessage);
-        }
-
-        public void InfoFmt(string fmt, params object[] args)
-        {
-            var traceFile = GetTraceSessionFilePath();
-            var baseMessage = string.Format(fmt, args);
-            var traceMessage = $"INF   {DateTime.UtcNow.ToString("u")}   {baseMessage}{Environment.NewLine}";
-
-            File.AppendAllText(traceFile, traceMessage);
-            Console.Write(traceMessage);
-        }
-
         public bool IsDebugEnabled() => true;
 
         public bool IsErrorEnabled() => true;
@@ -111,25 +134,6 @@ namespace Snowflake.Data.Log
         public bool IsInfoEnabled() => true;
 
         public bool IsWarnEnabled() => true;
-
-        public void Warn(string msg, Exception ex = null)
-        {
-            var traceFile = GetTraceSessionFilePath();
-            var traceMessage = $"WRN   {DateTime.UtcNow.ToString("u")}   {msg}. {ex?.ToString()}{Environment.NewLine}";
-
-            File.AppendAllText(traceFile, traceMessage);
-            Console.Write(traceMessage);
-        }
-
-        public void WarnFmt(string fmt, params object[] args)
-        {
-            var traceFile = GetTraceSessionFilePath();
-            var baseMessage = string.Format(fmt, args);
-            var traceMessage = $"INF   {DateTime.UtcNow.ToString("u")}   {baseMessage}{Environment.NewLine}";
-
-            File.AppendAllText(traceFile, traceMessage);
-            Console.Write(traceMessage);
-        }
 
         private string GetTraceSessionFilePath()
         {
