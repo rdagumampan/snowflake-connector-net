@@ -1,17 +1,20 @@
 ﻿ <!--
  * Notice of modifications:
  *  @rdagumampan : Commented and removed dependency to log4net as default logger
+ *  @rdagumampan : Changed icon to yuniql icon
+ *  @rdagumampan : Changed title and package name into Yuniql.Snowflake.Data
  -->
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net46</TargetFrameworks>
-    <Title>Snowflake.Data</Title>
-    <PackageId>Snowflake.Data.Unofficial</PackageId>
-    <PackageLicenseUrl>https://github.com/snowflakedb/snowflake-connector-net/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/snowflakedb/snowflake-connector-net</PackageProjectUrl>
+    <Title>Yuniql.Snowflake.Data</Title>
+    <PackageId>Yuniql.Snowflake.Data</PackageId>
+    <PackageLicenseUrl>https://github.com/rdagumampan/snowflake-connector-net/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/rdagumampan/snowflake-connector-net</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageIconUrl>https://raw.githubusercontent.com/snowflakedb/snowflake-connector-net/master/Snowflake.Data/snowflake.ico</PackageIconUrl>
+    <PackageIconUrl>https://github.com/rdagumampan/yuniql/blob/master/assets/favicon.png</PackageIconUrl>
+    <PackageIcon>favicon.png</PackageIcon>
     <Description>Snowflake Connector for .NET
 
 Modifications in this unofficial build (by rdagumampan):
@@ -63,4 +66,9 @@ Modifications in this unofficial build (by rdagumampan):
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="favicon.png" Pack="true" Visible="false" PackagePath="" />
+  </ItemGroup>
+  
 </Project>
